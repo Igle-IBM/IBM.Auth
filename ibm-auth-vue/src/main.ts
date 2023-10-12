@@ -104,9 +104,10 @@ import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
 
 
-const app = createApp(App);
+export const app = createApp(App);
 app.use(router);
 app.use(PrimeVue);
+app.use(ToastService);
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);

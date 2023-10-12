@@ -15,40 +15,24 @@
             <br >
             <div class="p-inputgroup flex-1">
               <span class="p-inputgroup-addon">
-                  <i class="pi pi-user"></i>
+                  <i class="pi pi-lock"></i>
               </span>
-              <Password :feedback="false" />
+              <Password placeholder="Contrasena" :feedback="false" toggleMask />
             </div>  
+            <br >
+            <div class="p-input group flex-2">
+              <Button @click="onSubmit" label="Iniciar sesion" icon="pi pi-check" iconPos="right" />
+            </div>
         </template>
 
         
     </Card>
-    <div class="card flex flex-column md:flex-row gap-3">
-      <div class="p-inputgroup flex-1">
-        <span class="p-inputgroup-addon">
-            <i class="pi pi-user"></i>
-        </span>
-        <InputText placeholder="Username" />
-      </div>
-
-      <div class="p-inputgroup flex-1">
-          <span class="p-inputgroup-addon">$</span>
-          <InputNumber placeholder="Price" />
-          <span class="p-inputgroup-addon">.00</span>
-      </div>
-
-      <div class="p-inputgroup flex-1">
-          <span class="p-inputgroup-addon">www</span>
-          <InputText placeholder="Website" />
-      </div>
-    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import InputText from 'primevue/inputtext';
-import InputNumber from 'primevue/inputnumber';
+import AuthService from '../apis/authapi'
 
 
 export default defineComponent({
@@ -69,9 +53,10 @@ export default defineComponent({
     }
   },
   methods: {
-    onSubmit(event: any) {
+    async onSubmit(event: any) {
         event.preventDefault()
-        alert(JSON.stringify(this.form))
+        // alert(JSON.stringify(this.form))
+        await AuthService.login('jose','123');
       },
       onReset(event: any) {
         event.preventDefault()

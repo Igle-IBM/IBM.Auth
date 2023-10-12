@@ -1,16 +1,18 @@
 require("dotenv").config();
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+var cors = require('cors')
 const express = require("express");
 const { createUser, getUserByEmail } = require('./model/user');
 
 
 const app = express();
+app.use(cors())
 
 app.use(express.json());
 
 // Register
-app.post("/register", async (req, res) => {
+app.post("/auth/register", async (req, res) => {
   const { email, password } = req.body;
 
   // Validate user input
@@ -35,7 +37,7 @@ app.post("/register", async (req, res) => {
 });
 
 // Login
-app.post("/login", async (req, res) => {
+app.post("/auth/login", async (req, res) => {
   // Our login logic starts here
   try {
     // Get user input
